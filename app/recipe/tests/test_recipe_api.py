@@ -13,7 +13,7 @@ RECIPE_URLS = reverse('recipe:recipe-list')
 
 
 def detail_url(recipe_id):
-    return reverse('recipe:recipe-detail', args=(recipe_id))
+    return reverse('recipe:recipe-detail', args=recipe_id)
 
 
 def sample_tag(user, name='Main course'):
@@ -141,7 +141,7 @@ class PrivateRecipeApiTest(TestCase):
         self.assertIn(tag2, tags)
 
     def test_create_recipe_with_ingredients(self):
-        """Test creating a recipe with igredients"""
+        """Test creating a recipe with ingredients"""
         ingredient1 = sample_ingredient(user=self.user, name='Prawns')
         ingredient2 = sample_ingredient(user=self.user, name='Ginger')
         payload = {
@@ -195,4 +195,3 @@ class PrivateRecipeApiTest(TestCase):
         self.assertEqual(recipe.price, payload['price'])
         tags = recipe.tags.all()
         self.assertEqual(len(tags), 0)
-
